@@ -34,17 +34,17 @@
 
 //short pulses
 (
-//1.7 decided on as the speed of the pulses
-~pulse = {EnvGen.ar(Env.perc(0.3,0.2),Impulse.kr(1.7))};
-~four = {SinOsc.ar([~fund,~fund*1.01],0,Line.kr(0,0.1,20)).flat*~pulse.ar};
+//65bpm
+~pulse = {EnvGen.ar(Env.perc(0.3,0.2),Impulse.kr(65/60))};
+~four = {SinOsc.ar([~fund,~fund*LFNoise1.kr(0.2).range(1,1.09)],0,Line.kr(0,0.1,20)).flat*~pulse.ar};
 ~four.play;
 )
 
 //short pulses fade further in
-~four = {SinOsc.ar([~fund,~fund*1.01],0,Line.kr(0.1,0.3,20)).flat*~pulse.ar};
+~four = {SinOsc.ar([~fund,~fund*LFNoise1.kr(0.2).range(1,1.09)],0,Line.kr(0.1,0.3,20)).flat*~pulse.ar};
 
 //short pulses fade further in
-~four = {SinOsc.ar([~fund,~fund*1.01],0,Line.kr(0.3,0.5,20)).flat*~pulse.ar};
+~four = {SinOsc.ar([~fund,~fund*LFNoise1.kr(0.2).range(1,1.09)],0,Line.kr(0.3,0.5,20)).flat*~pulse.ar};
 
 //original
 ~four = {SinOsc.ar([~fund,~fund*1.01],0,2)*EnvGen.ar(Env.perc(0.01,7),Impulse.kr(1/8))};
