@@ -102,10 +102,10 @@ Task({
 //crabs - When the story begins and crabs are mentioned, ON THE DECK OF THE BOAT
 (
 ~crabpulse = 1;
-~crabs = {PlayBuf.ar(2,d["Recordings"][8],Line.kr(0.1,1,20)*~crabpulse.abs,1,0,1,0)*Line.kr(0,0.005,2)};
-~crabs2 = {PlayBuf.ar(2,d["Recordings"][8],Line.kr(0.1,0.7,20)*~crabpulse.abs,1,0,1,0)*Line.kr(0,0.005,2)};
-~crabs3 = {PlayBuf.ar(2,d["Recordings"][8],Line.kr(0.1,0.4,30)*~crabpulse.abs,1,0,1,0)*Line.kr(0,0.005,2)};
-~crabs4 = {PlayBuf.ar(2,d["Recordings"][8],Line.kr(0.01,0.1,30)*~crabpulse.abs,1,0,1,0)*Line.kr(0,0.005,2)};
+~crabs = {PlayBuf.ar(2,d["Recordings"][9],Line.kr(0.1,1,20)*~crabpulse.abs,1,0,1,0)*Line.kr(0,0.005,2)};
+~crabs2 = {PlayBuf.ar(2,d["Recordings"][9],Line.kr(0.1,0.7,20)*~crabpulse.abs,1,0,1,0)*Line.kr(0,0.005,2)};
+~crabs3 = {PlayBuf.ar(2,d["Recordings"][9],Line.kr(0.1,0.4,30)*~crabpulse.abs,1,0,1,0)*Line.kr(0,0.005,2)};
+~crabs4 = {PlayBuf.ar(2,d["Recordings"][9],Line.kr(0.01,0.1,30)*~crabpulse.abs,1,0,1,0)*Line.kr(0,0.005,2)};
 ~crabs.play;
 ~crabs2.play;
 ~crabs3.play;
@@ -116,7 +116,6 @@ Task({
 (
 ~shep = {     var intervals, amps; #intervals, amps = Shepard.kr(5,-0.01);(SinOsc.ar( (intervals + 80).midicps,0,Line.kr(0,0.4,10)) * amps).sum * 0.002 !2};
 ~shep.play;
-//
 )
 
 
