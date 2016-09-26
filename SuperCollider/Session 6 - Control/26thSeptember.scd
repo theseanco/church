@@ -36,6 +36,8 @@ Then the choral piece comes back in which is cut short by the control mechanism.
 /*
 CHORAL THING
 */
+
+s.makeWindow
 (
 ~fund = 41.2;
 ~pulsemaster = {Impulse.kr(50/60)};
@@ -61,6 +63,21 @@ CHORAL THING
 
 //orange comes in, after monologue about drugs
 (
+//
+//RED
+b.sendMsg("/l1r/",255);
+//GREEN
+Task({var light = 110;
+	75.do({
+		b.sendMsg("/l1g/",light);
+		light = light - 1;
+		light.postln;
+		0.3.wait;
+})}).start;
+//BLUE
+b.sendMsg("/l1b/",0);
+b.sendMsg("/l1m/",255);
+//
 ~dfm = {DFM1.ar(Splay.ar(Pulse.ar([~fund,~fund*4,~fund*8,~fund*9,~fund*LFNoise1.kr(LFNoise1.kr(0.1).range(0.01,1)).range(1,16).round(2)],SinOsc.kr(0.1).range(0.1,0.9),[LFNoise1.kr(0.4).range(0,0.2),LFNoise1.kr(0.4).range(0,0.2),LFNoise1.kr(0.4).range(0,0.2),LFNoise1.kr(0.4).range(0,0.15),LFNoise1.kr(0.4).range(0,0.15)])),~fund*10,LFNoise1.kr(0.1).range(0.01,0.1),1,0,mul:Line.kr(0,0.2,20))};
 ~rec.stop(20);
 ~dfm.play;
@@ -86,10 +103,23 @@ CHORAL THING
 ~heartbeat.vol = 1.2
 
 //mock control
-~pulse = {SinOsc.kr(1).range(Line.kr(9000,9,1),9000)}
+~pulse = {SinOsc.kr(1).range(Line.kr(9000,9,30),9000)}
 
-//descent shepherd tone
+//descent shepherd tone - sink down
 (
+//LIGHTS
+Task({var light = 145;
+	145.do({
+		b.sendMsg("/l1r/",light);
+		light = light - 1;
+		light.postln;
+		0.137.wait;
+})}).start;
+b.sendMsg("/l1g/",0);
+b.sendMsg("/l1b/",255);
+b.sendMsg("/l1m/",255);
+
+
 ~shep = {     var intervals, amps; #intervals, amps = Shepard.kr(5,-0.01);(SinOsc.ar( (intervals + 50).midicps,0,Line.kr(0,1,1)) * amps).sum * 0.02 !2};
 ~crabs = {LPF.ar(PlayBuf.ar(2,d["Recordings"][9],1,1,0,1,0),~pulse)*Line.kr(0.01,0.05,10)};
 ~crabs2 = {LPF.ar(PlayBuf.ar(2,d["Recordings"][9],0.7,1,0,1,0),~pulse,2)*Line.kr(0.01,0.05,10)};
@@ -162,5 +192,12 @@ Task({
 }).start;
 )
 
+(
+~rec.stop(20);
+~rec2.stop(20);
+~heartbeat.stop(10);
+)
+
+//CHORUS AND CONTROL
 
 //bird and guitar fade out in advance of the choral piece coming in
