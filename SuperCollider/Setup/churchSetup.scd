@@ -7,6 +7,7 @@ p.makeTempoClock;
 c=NanoKontrol.new;
 p.clock.tempo = 1;
 s.scope;
+b = NetAddr("127.0.0.1", 7700);
 Task({
 	3.wait;
 	d = Dictionary.new;
@@ -24,3 +25,23 @@ Task({
 	"Setup done!".postln;
 }).start;
 )
+
+//RUN THIS!!!!!!!!!!!!!!!!
+
+(
+var prev = 0;
+d[\diff1] = { |in|
+    var result = in - prev;
+    prev = in;
+    result;
+	result = if ( result < 300, {10},{result});
+};
+);
+
+(
+d[\fingers] = { |in|
+	if (in == 1023, {0}, {1});
+};
+);
+
+
